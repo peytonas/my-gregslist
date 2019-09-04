@@ -41,7 +41,7 @@ export default class CarController {
 
     async edit(req, res, next) {
         try {
-            let car = await _carService.findOneAndUpdate({ _id: req.params.id, }, req.body, { new: true })
+            let car = await _carService.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
             if (car) {
                 return res.send(car)
             }
