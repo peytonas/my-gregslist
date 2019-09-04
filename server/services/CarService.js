@@ -7,7 +7,7 @@ const _model = new Schema({
 }, { timestamps: true })
 
 export default class CarService {
-    get repository() {
+    get Repository() {
         return mongoose.model('car', _model)
     }
 }

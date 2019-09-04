@@ -1,10 +1,10 @@
 // NOTE this is essentially the main portion of our server
 import express from 'express'
 import cors from 'cors'
+const port = process.env.PORT || 3000
 import bp from 'body-parser'
 import DbContext from "./db/dbconfig"
 
-const port = process.env.PORT || 3000
 
 //NOTE next we need to create our server
 let server = express()
@@ -16,16 +16,15 @@ DbContext.connect()
 server.use(express.static(__dirname + '/../client/dist'))
 
 //NOTE Allows requests from the port 8080, add additional addresses as needed
-var whitelist = ['http://localhost:8080'];
-var corsOptions = {
+let whitelist = ['http://localhost:8080'];
+let corsOptions = {
   origin: function (origin, callback) {
-    var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+    let originIsWhitelisted = whitelist.indexOf(origin) !== -1;
     callback(null, originIsWhitelisted);
   },
   credentials: true
 };
 server.use(cors(corsOptions))
-
 
 //NOTE we are giving our server the bodyparser middleware. This middleware gives use the ability to pass information into our server as a request and parse it from JSON back into objects.
 server.use(bp.urlencoded({ extended: true }))
@@ -69,4 +68,5 @@ server.listen(port, () => {
 server.get("/", (req, res, next) => {
   console.log("You rang?", req);
   res.send("<h1>You Rang?</h1>")
+  next()
 })
