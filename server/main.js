@@ -62,8 +62,11 @@ server.use('*', (req, res, next) => {
 })
 
 
-server.listen(port, () => { console.log(`Server is running on port: ${port}`) })
+server.listen(port, () => {
+  console.log(`Server is running on port: ${port}`);
+})
 
 server.get("/", (req, res, next) => {
   console.log("You rang?", req);
   res.send("<h1>You Rang?</h1>")
+})

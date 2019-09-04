@@ -14,6 +14,7 @@ const connectionString = process.env.CONNECTION_STRING;
 export default class DbContext {
     static async connect() {
         try {
+            console.log("[CONNECTION_STRING]", connectionString)
             let status = await mongoose.connect(connectionString)
             console.log("CONNECTED")
             return status
