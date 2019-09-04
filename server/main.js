@@ -16,7 +16,7 @@ DbContext.connect()
 server.use(express.static(__dirname + '/../client/dist'))
 
 //NOTE Allows requests from the port 8080, add additional addresses as needed
-let whitelist = ['http://localhost:8080'];
+let whitelist = ['http://localhost:8080', 'http://127.0.0.1:5500/fall19-gregslist/', 'http://127.0.0.1:8080'];
 let corsOptions = {
   origin: function (origin, callback) {
     let originIsWhitelisted = whitelist.indexOf(origin) !== -1;
