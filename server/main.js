@@ -42,7 +42,7 @@ import CarController from './controllers/CarController'
 
 
 //NOTE remember the forward slash at the start of your path!
-server.use('/api/values', new CarController().router)
+server.use('/api/cars', new CarController().router)
 // server.use('/api/values', new HouseController().router)
 // server.use('/api/values', new JobController().router)
 
@@ -63,7 +63,7 @@ server.use('*', (req, res, next) => {
 
 
 server.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+  console.log(`Server ${port} is running, better catch it!`);
 })
 
 server.get("/", (req, res, next) => {

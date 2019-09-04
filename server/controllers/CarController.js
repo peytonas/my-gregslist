@@ -1,9 +1,9 @@
 import express from 'express'
-import ValueService from '../services/ValueService';
+import CarService from '../services/CarService';
 
-let _valueService = new ValueService().repository
+let _carService = new CarService().repository
 
-export default class ValueController {
+export default class CarController {
     constructor() {
         this.router = express.Router()
             //NOTE  each route gets registered as a .get, .post, .put, or .delete, the first parameter of each method is a string to be concatinated onto the base url registered with the route in main. The second parameter is the method that will be run when this route is hit.
@@ -16,7 +16,7 @@ export default class ValueController {
 
     async getAll(req, res, next) {
         try {
-            let data = await _valueService.find({})
+            let data = await _carService.find({})
             return res.send(data)
         } catch (error) { next(error) }
 
@@ -24,7 +24,7 @@ export default class ValueController {
 
     async getById(req, res, next) {
         try {
-            let data = await _valueService.findById(req.params.id)
+            let data = await _carService.findById(req.params.id)
             if (!data) {
                 throw new Error("Invalid Id")
             }
@@ -34,14 +34,14 @@ export default class ValueController {
 
     async create(req, res, next) {
         try {
-            let data = await _valueService.create(req.body)
+            let data = await _carService.create(req.body)
             res.send(data)
         } catch (error) { next(error) }
     }
 
     async edit(req, res, next) {
         try {
-            let data = await _valueService.findOneAndUpdate({ _id: req.params.id, }, req.body, { new: true })
+            let data = await _carService.findOneAndUpdate({ _id: req.params.id, }, req.body, { new: true })
             if (data) {
                 return res.send(data)
             }
@@ -53,7 +53,7 @@ export default class ValueController {
 
     async delete(req, res, next) {
         try {
-            await _valueService.findOneAndRemove({ _id: req.params.id })
+            await _carService.findOneAndRemove({ _id: req.params.id })
             res.send("deleted value")
         } catch (error) { next(error) }
 
