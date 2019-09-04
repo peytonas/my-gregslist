@@ -46,6 +46,10 @@ server.use('/api/cars', new CarController().router)
 // server.use('/api/values', new JobController().router)
 
 
+server.get("/", (req, res, next) => {
+  res.send("<h1>You Rang?</h1>")
+  console.log("You rang?", req);
+})
 
 
 //NOTE Everything below this line always stays the same
@@ -65,8 +69,3 @@ server.listen(port, () => {
   console.log(`Server ${port} is running, better catch it!`);
 })
 
-server.get("/", (req, res, next) => {
-  console.log("You rang?", req);
-  res.send("<h1>You Rang?</h1>")
-  next()
-})
